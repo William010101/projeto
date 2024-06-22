@@ -76,95 +76,95 @@ $controller->Excluir_Cliente();
         Rota Financeira <img src="logo.png" alt="" id="logo">
         </div>
     </header>
-        
+
     <?php include_once('includes/extrato.php'); ?>
         
         <div class="segura_tabela">
-            <div class="registros">
+        <div class="registros">
                 <div class="navegacao">
                 <form class="tipo" action="#" method="get">
                 <div class="nome_da_pagina" <?php echo basename($_SERVER['SCRIPT_NAME']) == 'index.php' ? "id='pag-ativa'" : ""; ?>>
                     <?php echo "<a href='index.php'>"; ?>
                     <input name="pagina" type="button" value="Receita"<?php echo basename($_SERVER['SCRIPT_NAME']) == 'index.php' ? "id='pag-ativa'" : ""; ?>/>
                     <?php echo "</a>"; ?>
-                </div>
+                    </div>
                 <div class="nome_da_pagina" <?php echo basename($_SERVER['SCRIPT_NAME']) == 'despesaf.php' ? "id='pag-ativa2'" : ""; ?>>
                     <?php echo "<a href='despesaf.php'>"; ?>
                     <input name="pagina" type="button" value="Despesa Fixa" <?php echo basename($_SERVER['SCRIPT_NAME']) == 'despesaf.php' ? "id='pag-ativa2'" : ""; ?>/>
                     <?php echo "</a>"; ?>
-                </div>
+                    </div>
                 <div class="nome_da_pagina" <?php echo basename($_SERVER['SCRIPT_NAME']) == 'despesav.php' ? "id='pag-ativa3'" : ""; ?>>
                     <?php echo "<a href='despesav.php'>"; ?>
                     <input name="pagina" type="button" value="Despesa Variável" <?php echo basename($_SERVER['SCRIPT_NAME']) == 'despesav.php' ? "id='pag-ativa3'" : ""; ?>/>
                     <?php echo "</a>"; ?>
-                </div>
+                    </div>
                 <div class="nome_da_pagina" <?php echo basename($_SERVER['SCRIPT_NAME']) == 'clientes.php' ? "id='pag-ativa4'" : ""; ?>>
                     <?php echo "<a href='clientes.php'>"; ?>
                     <input name="pagina" type="button" value="Clientes" <?php echo basename($_SERVER['SCRIPT_NAME']) == 'clientes.php' ? "id='pag-ativa4'" : ""; ?>/>
                     <?php echo "</a>"; ?>
-                </div>
-            </form>
-                </div>
-    
-                <div class="fora4" id="tabela">
-                    <div class="marg">
-                        <div class="expor" id="cabecalho">
-                            <div class="inforeg">Nome</div>
-                            <div class="inforeg">CPF/CNPJ</div>
-                            <div class="inforeg">Cidade</div>
-                            <div class="inforeg">Telefone</div>
-                            <div class="inforeg">Banco</div>
-                            <div class="inforeg">Conta</div>
-                            <div class="inforeg">
-                                <div class="hidden">1</div>
-                            </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="fora4" id="tabela">
+                <div class="marg">
+                    <div class="expor" id="cabecalho">
+                        <div class="inforeg">Nome</div>
+                        <div class="inforeg">CPF/CNPJ</div>
+                        <div class="inforeg">Cidade</div>
+                        <div class="inforeg">Telefone</div>
+                        <div class="inforeg">Banco</div>
+                        <div class="inforeg">Conta</div>
+                        <div class="inforeg">
+                            <div class="hidden">1</div>
                         </div>
                     </div>
                 </div>
-    
-                <div class="fora4">
-                    <?php
-                    $clientes = $controller->Get_Clientes();
-                    foreach ($clientes as $cli):
-                        ?>
-                        <div class='marg'>
-                            <div class='fora5'>
-                                    <div class='inforeg3'>
-                                        <?php echo $cli->getNome(); ?>
-                                    </div>
-                                    <div class='inforeg3'>
-                                        <?php echo $cli->getCpfCnpj(); ?>
-                                    </div> 
-                                    <div class='inforeg3'>
-                                        <?php echo $cli->getCidade(); ?>
-                                    </div>
-                                    <div class='inforeg3'>
-                                        <?php echo $cli->getTelefone(); ?>
-                                    </div>
-                                    <div class='inforeg3'>
-                                        <?php echo $cli->getBanco(); ?>
-                                    </div>
-                                    <div class='inforeg3'>
-                                        <?php echo $cli->getTipoConta(); ?>
-                                    </div>
-                                    <div class='inforeg3'>
-                                        <form id="apagar" name="apagar" method='POST'>
-                                            <button type="submit" name="apagar-cliente" class='pagar' id='excluir'>
-                                                <input type='hidden' name='opcao' value='<?php echo $cli->getIDcliente(); ?>'>
-                                                Excluir
+            </div>
+
+            <div class="fora4">
+                <?php
+                $clientes = $controller->Get_Clientes();
+                foreach ($clientes as $cli):
+                    ?>
+                    <div class='marg'>
+                        <div class='fora5'>
+                                <div class='inforeg3'>
+                                    <?php echo $cli->getNome(); ?>
+                                </div>
+                                <div class='inforeg3'>
+                                    <?php echo $cli->getCpfCnpj(); ?>
+                                </div> 
+                                <div class='inforeg3'>
+                                    <?php echo $cli->getCidade(); ?>
+                                </div>
+                                <div class='inforeg3'>
+                                    <?php echo $cli->getTelefone(); ?>
+                                </div>
+                                <div class='inforeg3'>
+                                    <?php echo $cli->getBanco(); ?>
+                                </div>
+                                <div class='inforeg3'>
+                                    <?php echo $cli->getTipoConta(); ?>
+                                </div>
+                                <div class='inforeg3'>
+                                    <form id="apagar" name="apagar" method='POST'>
+                                        <button type="submit" name="apagar-cliente" class='pagar' id='excluir'>
+                                            <input type='hidden' name='opcao' value='<?php echo $cli->getIDcliente(); ?>'>
+                                            Excluir
                                                 <i class="fa fa-minus-circle" style="font-size:15px; margin-left:5px" ;=""></i>
-                                            </button>
-                                        </form>
-                                    </div>
+                                        </button>
+                                    </form>
                                 </div>
                         </div>
-                    <?php endforeach; ?>
-    
-                </div>
+                    </div>
+                <?php endforeach; ?>
+
             </div>
         </div>
-    
-        <?php include_once ('includes/formulario_cadastro.php') ?>
+    </div>
+
+    <?php include_once ('includes/formulario_cadastro.php') ?>
 
 </body>
 

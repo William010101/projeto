@@ -94,7 +94,7 @@ class Cliente {
         return $this->email;
     }
 
-    public function getBanco(): int {
+    public function getBanco(): string {
         return $this->banco;
     }
 

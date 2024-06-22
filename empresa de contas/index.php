@@ -78,6 +78,8 @@ $contas = controller_conta::Get_contas("receita");
     <?php include_once ('includes/extrato.php'); ?>
     <?php include_once('includes/tabela.php'); ?>
     <?php include_once ('includes/formulario_cadastro.php') ?>
+    <?php include_once ('includes/grafico.php') ?>
+    
 </body>
 
 </html>

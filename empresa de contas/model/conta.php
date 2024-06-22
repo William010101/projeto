@@ -242,5 +242,50 @@ class Conta {
         }
         return $dados;
     }
+
+    public static function Maior_receita_despesa_cliente(string $query):array
+    {
+        try{
+            $conexao = new Conexao();
+            $sql="SELECT cliente.nome, SUM(contas.valor) AS total_valor
+            FROM contas
+            INNER JOIN cliente ON contas.id_cliente_fk = cliente.id_cliente "
+            .$query."
+            GROUP BY cliente.nome
+            ORDER BY total_valor DESC
+            LIMIT 5";
+            $resultado = $conexao->executarQuery($sql);
+            $dados = [];
+            while ($row = mysqli_fetch_assoc($resultado)) {
+            $dados[] = $row;
+        }
+        }catch (PDOException $e){
+            echo "Erro ao consultar saldo: " . $e->getMessage();
+        }
+        return $dados;
+    }
+    public static function Receita_despesa():array
+    {
+        try{
+            $conexao = new Conexao();
+            $sql="SELECT DATE_FORMAT(data_recebimento, '%Y-%m') AS mes_ano, tipo_de_conta, SUM(valor) AS valor 
+            FROM contas WHERE tipo_de_conta = 'receita' GROUP BY mes_ano, tipo_de_conta 
+            UNION 
+            SELECT DATE_FORMAT(data_recebimento, '%Y-%m') 
+            AS mes_ano, tipo_de_conta, SUM(valor) 
+            AS valor 
+            FROM contas 
+            WHERE tipo_de_conta = 'despesa_fixa' OR tipo_de_conta = 'despesa_variavel' 
+            GROUP BY mes_ano, tipo_de_conta 
+            ORDER BY mes_ano, tipo_de_conta;";
+            $resultado = $conexao->executarQuery($sql);
+            $dados = [];
+            while ($row = mysqli_fetch_assoc($resultado)) {
+            $dados[] = $row;
+        }
+        }catch (PDOException $e){
+            echo "Erro ao consultar saldo: " . $e->getMessage();
+        }
+        return $dados;
+    }
 }
-?>
