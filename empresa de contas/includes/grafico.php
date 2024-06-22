@@ -2,6 +2,7 @@
 include_once(__DIR__ . '/../model/conta.php');
 include_once(__DIR__ . '/../controller/controller_conta.php');
 $result = controller_conta::Ajuste_receita_despesa();
+ 
 $maior_receita = Conta::Maior_receita_despesa_cliente("WHERE contas.tipo_de_conta = 'receita' AND contas.status_pagamento = 'pago'");
 $maior_despesa = Conta::Maior_receita_despesa_cliente("WHERE contas.tipo_de_conta = 'despesa_fixa' OR contas.tipo_de_conta = 'despesa_variavel'");
 $valorRe = [];
@@ -16,7 +17,46 @@ foreach($result['despesas'] as $resd){
 }
 $despesasV = implode(",", $despesas);
 
+$meses = [
+  '01' => 'Jan',
+  '02' => 'Feb',
+  '03' => 'Mar',
+  '04' => 'Apr',
+  '05' => 'May',
+  '06' => 'Jun',
+  '07' => 'Jul',
+  '08' => 'Aug',
+  '09' => 'Sep',
+  '10' => 'Oct',
+  '11' => 'Nov',
+  '12' => 'Dec',
+];
 
+$data = [];
+
+foreach ($result['receitas'] as $resData) {
+  $mesAno = explode('-', $resData['mes_ano']);
+  if (count($mesAno) == 2) {
+      $mes = $mesAno[1];
+      if (array_key_exists($mes, $meses)) {
+          $data[] = $meses[$mes];
+      }
+  }
+}
+
+// Remove duplicados e reordena os meses no array
+$data = array_unique($data);
+$ordemMeses = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+usort($data, function($a, $b) use ($ordemMeses) {
+  return array_search($a, $ordemMeses) - array_search($b, $ordemMeses);
+});
+
+// Envolve cada mês em aspas simples e transforma o array em uma string
+$dataF = implode(",", array_map(function($item) {
+  return "'$item'";
+}, $data));
+
+echo $dataF;
 ?>
 
 <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script> 
@@ -169,20 +209,22 @@ option = {
   xAxis: [
     {
       type: 'category',
-      data: [
-        'Jan',
-        'Feb',
-        'Mar',
-        'Apr',
-        'May',
-        'Jun',
-        'Jul',
-        'Aug',
-        'Sep',
-        'Oct',
-        'Nov',
-        'Dec'
-      ]
+      <?php echo "data: [" .$dataF . "]";?>,
+
+      // data: [
+      //   'Jan',
+      //   'Feb',
+      //   'Mar',
+      //   'Apr',
+      //   'May',
+      //   'Jun',
+      //   'Jul',
+      //   'Aug',
+      //   'Sep',
+      //   'Oct',
+      //   'Nov',
+      //   'Dec'
+      // ]
     }
   ],
   yAxis: [

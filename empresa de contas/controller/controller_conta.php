@@ -155,13 +155,19 @@ class controller_conta
         {
             $mesAnoA = explode('-', $a['mes_ano']);
             $mesAnoB = explode('-', $b['mes_ano']);
-
-            // Compara o ano primeiro
+        
+            // Verifica se ambos os arrays têm dois elementos
+            if (count($mesAnoA) < 2 || count($mesAnoB) < 2) {
+                // Caso não tenha, trata o erro conforme necessário
+                // Pode lançar uma exceção ou apenas retornar 0 para não alterar a ordem
+                return 0;
+            }
+        // Compara o ano primeiro
             $resultadoAno = strcmp($mesAnoA[0], $mesAnoB[0]);
             if ($resultadoAno != 0) {
                 return $resultadoAno;
             }
-
+        
             // Se os anos forem iguais, compara o mês
             return strcmp($mesAnoA[1], $mesAnoB[1]);
         }
