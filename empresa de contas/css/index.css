@@ -1,0 +1,191 @@
+* {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #fff;
+    display: flex;
+    flex-direction: row;
+}
+
+/* FUNDO DO FORMULÁRIO */
+.fundo-formulario{
+    width: 28%;
+    height: 100vh;
+    background-color: #269C72;
+    box-shadow: 0px 3px 40px #838383;
+}
+
+/* FUNDO DAS INFORMAÇÕES DO SISTEMA */
+.informacoes{
+    width: 72%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* DIV PARA O TEXTO 'LOGIN' */
+.login{
+    padding: 28% 0px 0px 14%;
+    width: 40%;
+    font-size: 35px;
+    letter-spacing: 1px;
+    font-weight: 600;
+    color: #fff;
+}
+
+/* ORGANIZANDO INPUTS */
+.segura-input{
+    display: flex;
+    flex-direction: column;
+}
+
+/* REDEFININDO FORMATAÇÃO DOS INPUTS DE EMAIL E SENHA */
+input[name="login"],
+input[name="senha"]{
+    width: 75%;
+    margin: auto;
+    font-size: 18px;
+    height: 35px;
+    outline: none;
+    color: #fff;
+    padding: 0 1%;
+    background: none;
+    border: none;
+    border-bottom: 3px solid #fff;
+}
+
+input[name="login"]::placeholder,
+input[name="senha"]::placeholder{
+    opacity: 40%;
+    color: #fff; 
+}
+
+/* DEFININDO AS MARGENS DOS INPUTS */
+input[name="login"]{
+    margin-top: 17%;
+    margin-bottom: 23%;
+}
+
+input[name="senha"]{
+    margin-bottom: 23%;
+}
+
+/* REDEFININFDO A FORMATAÇÃO DO INPUT TYPE BUTTON */
+input[type="button"]{
+    margin-bottom: 23%;
+    width: 35%;
+    margin: auto;
+    font-size: 15px;
+    height: 38px;
+    outline: none;
+    color: #269C72;
+    border: 1.7px solid #fff;
+    border-radius: 17px;
+    background: #fff;
+    transition: 0.2s;
+}
+
+input[type="button"]:hover {
+    transform: translateY(-2px);
+    box-shadow: 1px 1px 5px #ffffff;
+}
+
+input[type="button"]:active {
+    transform: translateY(1px);
+    box-shadow: 1px 1px 5px #ffffff;
+}
+
+/* CLASSE PARA REDEFINIT A FORMATAÇÃO DO LINK DE CONTATO */
+.contato {
+    width: 35%;
+    margin: auto;
+    color: #fff; 
+    text-decoration: none; 
+    font-style: normal; 
+    text-align: center;
+    opacity: 80%;
+    margin-top: 50%;
+    bottom: 20px;
+}
+
+.contato:hover {
+    width: 35%;
+    margin: auto;
+    color: #fff; 
+    text-decoration: none; 
+    font-style: normal; 
+    text-align: center;
+    opacity: 1;
+    margin-top: 50%;
+    bottom: 20px;
+}
+
+/* INFORMAÇÕES DE PREENCHIMENTO DO INPUT */
+
+input[name="login"]:-webkit-autofill,
+input[name="senha"]:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px #269C72 inset !important;
+    -webkit-text-fill-color: white !important;
+    font-size: 18px !important;
+}
+
+input {
+    caret-color: white;
+}
+
+/* INFORMAÇÕES DO SISTEMA */
+
+/* LOGO */
+.logo{
+    width: 48%;
+    margin: auto;
+    margin-bottom: 0;
+    background-color: none;
+    align-items: center;
+    margin-top: 3%;
+}
+
+img{
+    max-width: 100%;
+}
+
+.titulo{
+    width: 65%;
+    margin: auto;
+    margin-top: 18%;
+    margin-bottom: 0;
+    font-size: 34px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    word-spacing: 4px;
+    text-align: center;
+    color: #269C72;
+    font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.linha{
+    width: 65%;
+    margin: auto;
+    margin-top: 1.3%;
+    margin-bottom: 0;
+    height: 2px;
+    background-color: #269C72;
+}
+
+.texto-sistema{
+    width: 65%;
+    margin: auto;
+    margin-top: 1.8%;
+    margin-bottom: 0;
+    font-size: 24px;
+    letter-spacing: 2px;
+    text-align: justify;
+    word-spacing: 8px;
+    line-height: 38px;
+    color: #269C72;
+    font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+}

@@ -19,7 +19,7 @@ class controller_conta
                 'pendente' // status_pagamento (valor padrão 'ativo')
             );
             $conta->Cadastrar_conta($conta);
-            echo "<script>window.location.href = 'index.php'</script>";
+            echo "<script>window.location.href = 'receitas.php'</script>";
         }
     }
     public static function Get_contas($tipo_de_conta)
@@ -42,7 +42,7 @@ class controller_conta
                 echo "<html> <head></head><body>
                 <script>
                 alert('Pagamento realizado com sucesso!')
-                window.location.href = 'index.php';
+                window.location.href = 'receitas.php';
                 </script>
                 </body>
                 </html>";
@@ -58,7 +58,7 @@ class controller_conta
             if ($result) {
                 echo "<html> <head></head><body>
                     <script> alert('Conta excluida com sucesso!')
-                    window.location.href = 'index.php';
+                    window.location.href = 'receitas.php';
                     </script>
                     </body>
                     </html>";

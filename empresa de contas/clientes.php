@@ -1,4 +1,13 @@
 <?php
+session_start();
+
+if (!empty($_SESSION['id_usuario'])) {
+    // O login foi feito, permanece na página
+} else {
+    // Redireciona para a página de login se não estiver logado
+    header("Location: index.php");
+    exit();
+}
 include_once ('controller/controller_cliente.php');
 $controller = new Controller_cliente();
 $controller->Excluir_Cliente();
@@ -72,9 +81,7 @@ $controller->Excluir_Cliente();
 
 <body>
     <header>
-        <div class="titulo_header">
-        Rota Financeira <img src="logo.png" alt="" id="logo">
-        </div>
+        <img src="ROTA financeira.png" alt="">
     </header>
 
     <?php include_once('includes/extrato.php'); ?>
@@ -83,9 +90,9 @@ $controller->Excluir_Cliente();
         <div class="registros">
                 <div class="navegacao">
                 <form class="tipo" action="#" method="get">
-                <div class="nome_da_pagina" <?php echo basename($_SERVER['SCRIPT_NAME']) == 'index.php' ? "id='pag-ativa'" : ""; ?>>
-                    <?php echo "<a href='index.php'>"; ?>
-                    <input name="pagina" type="button" value="Receita"<?php echo basename($_SERVER['SCRIPT_NAME']) == 'index.php' ? "id='pag-ativa'" : ""; ?>/>
+                <div class="nome_da_pagina" <?php echo basename($_SERVER['SCRIPT_NAME']) == 'receitas.php' ? "id='pag-ativa'" : ""; ?>>
+                    <?php echo "<a href='receitas.php'>"; ?>
+                    <input name="pagina" type="button" value="Receita"<?php echo basename($_SERVER['SCRIPT_NAME']) == 'receitas.php' ? "id='pag-ativa'" : ""; ?>/>
                     <?php echo "</a>"; ?>
                     </div>
                 <div class="nome_da_pagina" <?php echo basename($_SERVER['SCRIPT_NAME']) == 'despesaf.php' ? "id='pag-ativa2'" : ""; ?>>

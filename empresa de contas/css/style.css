@@ -12,21 +12,12 @@ body {
 /* HEADER DO SISTEMA */
 header {
     background-color: #269C72;
-    padding: 6px;
-    padding-top: -28px;
-    font-size: 25px;
-}
-
-.titulo_header {
-    margin-left: 10px;
-    transform: translateY(-8px);
-    color: #fff;
-    letter-spacing: 1px;
+    align-content: center;
+    max-height: 50px;
 }
 
 #logo{
-    height: 40px;
-    transform: translateY(+10px);
+    max-height: 100%;
 }
 
 /* PARTE SUPERIOR DO SISTEMA - SALDO E A RECEBER */
@@ -220,7 +211,7 @@ input[id="pag-ativa4"]{
 .fora4 {
     padding: 6px;
     width: 97%;
-    min-height: 300px;
+    min-height: 200px;
     max-height: 300px;
     overflow: scroll;
     background-color: #d8d7d7;
@@ -234,7 +225,7 @@ input[id="pag-ativa4"]{
     }
     .fora4{
         transform: translateY(-40px);
-        min-height: 208px;
+        min-height: 200px;
     }
     .registros{
         padding-bottom: 0px;
@@ -332,7 +323,6 @@ input[id="pag-ativa4"]{
     padding-top: 5px;
     align-items: center;
     border-radius: 10px;
-    transform: translateY(3px);
     overflow: hidden;
 }
 

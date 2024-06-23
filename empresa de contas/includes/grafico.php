@@ -56,7 +56,6 @@ $dataF = implode(",", array_map(function($item) {
   return "'$item'";
 }, $data));
 
-echo $dataF;
 ?>
 
 <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script> 
@@ -64,114 +63,146 @@ echo $dataF;
 
 <div id="pizza-receita" style="width: 600px;height:400px;"></div>
 <script type="text/javascript">
-  var chartDom = document.getElementById('pizza-receita');
+var chartDom = document.getElementById('pizza-receita');
 var myChart = echarts.init(chartDom);
 var option;
 
 option = {
-  title: {
-    left: 'center',
-    text: 'Clientes que mais geraram Receita',
-  },
-  tooltip: {
-    trigger: 'item'
-  },
-  legend: {
-    top: '5%',
-    left: 'center'
-  },
-  series: [
-    {
-      name: 'Clientes que mais geraram Receita',
-      type: 'pie',
-      radius: ['40%', '70%'],
-      avoidLabelOverlap: false,
-      itemStyle: {
-        borderRadius: 10,
-        borderColor: '#fff',
-        borderWidth: 2
-      },
-      label: {
-        show: false,
-        position: 'center'
-      },
-      emphasis: {
+    title: {
+        left: 'center',
+        text: 'Clientes que mais geraram Receita',
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        top: '5%',
+        left: 'center'
+    },
+    series: [{
+        name: 'Clientes que mais geraram Receita',
+        type: 'pie',
+        radius: ['40%', '70%'],
+        avoidLabelOverlap: false,
         label: {
-          show: true,
-          fontSize: 40,
-          fontWeight: 'bold'
-        }
-      },
-      labelLine: {
-        show: false
-      },
-      data: [
+            show: false,
+            position: 'center'
+        },
+        emphasis: {
+            label: {
+                show: true,
+                fontSize: 40,
+                fontWeight: 'bold'
+            }
+        },
+        labelLine: {
+            show: false
+        },
+        data: [
         <?php
         foreach($maior_receita as $res):
         ?>
         { value: <?php echo $res['total_valor']?>, name:<?php echo " '".$res['nome']."' "?>},
         <?php endforeach;?>
-      ]
-    }
-  ]
+        ],
+        itemStyle: {
+            emphasis: {
+                shadowBlur: 10,
+                shadowOffsetX: 0,
+                shadowColor: 'rgba(0, 0, 0, 0.5)'
+            },
+            normal: {
+                color: function(params) {
+                    var colorList = [
+                        '#C5E1A5', '#AED581', '#9CCC65', '#8BC34A', '#7CB342'
+                    ];
+                    colorList.reverse();
+                    return colorList[params.dataIndex % colorList.length];
+                }
+            }
+        }
+    }]
 };
+
 
 option && myChart.setOption(option);
 
 </script> 
 <div id="pizza-despeza" style="width: 600px;height:400px;"></div>
 <script type="text/javascript">
-  var chartDom = document.getElementById('pizza-despeza');
+var chartDom = document.getElementById('pizza-despeza');
 var myChart = echarts.init(chartDom);
 var option;
 
 option = {
-  title: {
-    left: 'center',
-    text: 'Clientes que mais geraram despesa',
-  },
-  tooltip: {
-    trigger: 'item'
-  },
-  legend: {
-    top: '5%',
-    left: 'center'
-  },
-  series: [
-    {
-      name: 'Clientes que mais geraram Receita',
-      type: 'pie',
-      radius: ['40%', '70%'],
-      avoidLabelOverlap: false,
-      itemStyle: {
-        borderRadius: 10,
-        borderColor: '#fff',
-        borderWidth: 2
-      },
-      label: {
-        show: false,
-        position: 'center'
-      },
-      emphasis: {
+    title: {
+        left: 'center',
+        text: 'Clientes que mais geraram despesa',
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        top: '5%',
+        left: 'center'
+    },
+    series: [{
+        name: 'Clientes que mais geraram Despesa',
+        type: 'pie',
+        radius: ['40%', '70%'],
+        avoidLabelOverlap: false,
+        itemStyle: {
+            borderRadius: 10,
+            borderColor: '#fff',
+            borderWidth: 2
+        },
         label: {
-          show: true,
-          fontSize: 40,
-          fontWeight: 'bold'
-        }
-      },
-      labelLine: {
-        show: false
-      },
-      data: [
+            show: false,
+            position: 'center'
+        },
+        emphasis: {
+            label: {
+                show: true,
+                fontSize: 40,
+                fontWeight: 'bold'
+            }
+        },
+        labelLine: {
+            show: false
+        },
+        data: [
         <?php
         foreach($maior_despesa as $res):
         ?>
         { value: <?php echo $res['total_valor']?>, name:<?php echo " '".$res['nome']."' "?>},
         <?php endforeach;?>
-      ]
-    }
-  ]
+      ],
+        itemStyle: {
+            emphasis: {
+                shadowBlur: 10,
+                shadowOffsetX: 0,
+                shadowColor: 'rgba(0, 0, 0, 0.5)'
+            },
+            normal: {
+                color: function(params) {
+                    var colorList = [
+                        '#FFCDD2', '#EF9A9A', '#E57373', '#EF5350', '#F44336',
+                        '#E53935', '#D32F2F', '#C62828', '#B71C1C', '#FF8A80'
+                    ];
+                    var max = Math.max.apply(null, <?php echo json_encode(array_column($maior_despesa, 'total_valor')); ?>);
+                    var min = Math.min.apply(null, <?php echo json_encode(array_column($maior_despesa, 'total_valor')); ?>);
+                    var normalizedValue = (params.data.value - min) / (max - min);
+                    var colorIndex = Math.floor(normalizedValue * (colorList.length - 1));
+                    return colorList[colorIndex];
+                }
+            }
+        }
+    }]
 };
+
+
+
+
 
 option && myChart.setOption(option);
 

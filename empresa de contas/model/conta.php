@@ -268,16 +268,15 @@ class Conta {
     {
         try{
             $conexao = new Conexao();
-            $sql="SELECT DATE_FORMAT(data_recebimento, '%Y-%m') AS mes_ano, tipo_de_conta, SUM(valor) AS valor 
-            FROM contas WHERE tipo_de_conta = 'receita' GROUP BY mes_ano, tipo_de_conta 
-            UNION 
+            $sql="SELECT DATE_FORMAT(data_recebimento, '%Y-%m')
+            AS mes_ano, tipo_de_conta, SUM(valor) 
+            AS valor FROM contas WHERE tipo_de_conta = 'receita' AND status_pagamento='pago' AND data_recebimento IS NOT NULL GROUP BY mes_ano, tipo_de_conta 
+            UNION ALL 
             SELECT DATE_FORMAT(data_recebimento, '%Y-%m') 
             AS mes_ano, tipo_de_conta, SUM(valor) 
-            AS valor 
-            FROM contas 
-            WHERE tipo_de_conta = 'despesa_fixa' OR tipo_de_conta = 'despesa_variavel' 
-            GROUP BY mes_ano, tipo_de_conta 
-            ORDER BY mes_ano, tipo_de_conta;";
+            AS valor FROM contas 
+            WHERE (tipo_de_conta = 'despesa_fixa' OR tipo_de_conta = 'despesa_variavel') AND status_pagamento='pago' AND data_recebimento IS NOT NULL 
+            GROUP BY mes_ano, tipo_de_conta ORDER BY mes_ano, tipo_de_conta;";
             $resultado = $conexao->executarQuery($sql);
             $dados = [];
             while ($row = mysqli_fetch_assoc($resultado)) {

@@ -2,9 +2,9 @@
     <div class="registros">
         <div class="navegacao">
             <form class="tipo" action="#" method="get">
-                <div class="nome_da_pagina" <?php echo basename($_SERVER['SCRIPT_NAME']) == 'index.php' ? "id='pag-ativa'" : ""; ?>>
-                    <?php echo "<a href='index.php'>"; ?>
-                    <input name="pagina" type="button" value="Receita"<?php echo basename($_SERVER['SCRIPT_NAME']) == 'index.php' ? "id='pag-ativa'" : ""; ?>/>
+                <div class="nome_da_pagina" <?php echo basename($_SERVER['SCRIPT_NAME']) == 'receitas.php' ? "id='pag-ativa'" : ""; ?>>
+                    <?php echo "<a href='receitas.php'>"; ?>
+                    <input name="pagina" type="button" value="Receita"<?php echo basename($_SERVER['SCRIPT_NAME']) == 'receitas.php' ? "id='pag-ativa'" : ""; ?>/>
                     <?php echo "</a>"; ?>
                 </div>
                 <div class="nome_da_pagina" <?php echo basename($_SERVER['SCRIPT_NAME']) == 'despesaf.php' ? "id='pag-ativa2'" : ""; ?>>

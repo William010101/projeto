@@ -1,4 +1,13 @@
 <?php
+session_start();
+
+if (!empty($_SESSION['id_usuario'])) {
+    // O login foi feito, permanece na página
+} else {
+    // Redireciona para a página de login se não estiver logado
+    header("Location: index.php");
+    exit();
+}
 include_once ('controller/controller_conta.php');
 controller_conta::Apagar_Pagar_conta();
 $contas = controller_conta::Get_contas("despesa_fixa");
@@ -70,9 +79,7 @@ $contas = controller_conta::Get_contas("despesa_fixa");
 
 <body>
     <header>
-        <div class="titulo_header">
-        Rota Financeira <img src="logo.png" alt="" id="logo">
-        </div>
+        <img src="ROTA financeira.png" alt="">
     </header>
 
     <?php include_once('includes/extrato.php'); ?>
